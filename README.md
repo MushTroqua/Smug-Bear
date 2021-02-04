@@ -37,4 +37,4 @@ As of right now, the only way you could use this bot is to host it using your ow
 1. After that, do node bot.js
 1. Done!
 
-If you have any concerns/messages, then you're free to message me at matsu#3622.
+If you have any concerns/messages, then you're free to message me at matsu#3622 in Discord.
