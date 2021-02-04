@@ -1,5 +1,5 @@
 # Smug-Bear
-Smug bear is an all around bot designed to accomodate for the wants and needs of my private discord server. There isn't any features that are notable as of yet but here are the commands right now:
+Smug bear is an all around discord bot designed to accomodate for the wants and needs of my private discord server. There isn't any features that are notable as of yet but here are the commands right now:
 
 * **s!ping** = Pong! Will give you the latency of the bot.
 * **s!avatar** = Will get the url of your avatar and post it in the channel.
