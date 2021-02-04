@@ -23,7 +23,7 @@ client.on('ready', async () => {
                 message.channel.send(`Pong, motherfucker. This message had a latency of ${timeTaken}ms.`); 
             }
             
-        //This is the display avatar command
+        //This is the display avatar command.
             const embed = new Discord.MessageEmbed()
                 .setColor('#4985e9')
                 .setTitle('🖼Avatar🖼')
