@@ -38,3 +38,5 @@ As of right now, the only way you could use this bot is to host it using your ow
 1. Done!
 
 If you have any concerns/messages, then feel free to message me at matsu#3622 in Discord.
+
+***Disclaimer: This is also used to practice my horrible horrible coding so don't expect anything.***
