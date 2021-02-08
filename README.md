@@ -9,12 +9,11 @@ Smug bear is an all around discord bot built for a private discord server.
 ## Commands:
 There isn't any features that aren't really that far off from any typical bot as of yet but here are the commands right now:
 
+* **s!help** = Shows you the list of commands for Smug Bear!
 * **s!ping** = Pong! Will give you the latency of the bot.
 * **s!avatar** = Will get the url of your avatar and post it in the channel.
 
 ## Planned Features:
-
-* **Help page** - Pretty obvious. When you do s!help, it will show the help page.
 
 * **Minecraft server status checker** = Will check the status of a minecraft server to see if it's offline or online. Mainly only for players of my minecraft server.
 
