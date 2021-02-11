@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/MushTroqua/Smug-Bear/issues"
   },
-  "homepage": "https://github.com/MushTroqua/Smug-Bear#readme"
+  "homepage": "https://github.com/MushTroqua/Smug-Bear#readme",
+  "dependencies": {
+    "cheerio-select": "^1.1.0",
+    "gamedig": "^2.0.25",
+    "promise-toolbox": "^0.16.0"
+  }
 }
