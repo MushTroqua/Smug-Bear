@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 const config = require("./config.json");
 const Gamedig = require("gamedig")
@@ -7,13 +8,16 @@ const client = new Discord.Client();
 const { Client, MessageEmbed, Collection } = require('discord.js');
 //Plugin from Discord.js
 
+//=========================================================================================//
+//=====================================BOOT-UP SEQUENCE====================================//
+//=========================================================================================//
 client.on('ready', async () => {
         console.log("Smug Bear version 0.7");
         console.log("Created by matsu#3622.")
         client.user.setActivity("with these hands")
         console.log('Ready to fuck those motherfuckers up.');
 
-//Boot up sequence
+//=========================================CODE=========================================//
 });
 
     const prefix = "s!";
@@ -51,7 +55,7 @@ client.on('ready', async () => {
             message.channel.send(avatar);
             }
 
-            //LOOK INTO gamedig for Minecraft server functionality.
+            //Note to self: LOOK INTO gamedig for Minecraft server functionality.
         });
 
 client.login(config.BOT_TOKEN);
