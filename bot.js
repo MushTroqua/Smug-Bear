@@ -78,16 +78,17 @@ client.on('ready', async () => {
               message.delete(message.author);
               consoleLog();
             }
+            if (command === "random"){
+              let math = Math.floor(Math.random() * 11);
+              message.channel.send("<:game_die:820909565281042452>" + "Here's a random number:" + " [" + math + "]");
+
+            }
 
             if ((command === "forcestop") & (message.author.id == userID[1])) {
               stop();
             } //Only if needed.
 
-            if (command === "random"){
-              let math = Math.floor(Math.random() * 11);
-              message.channel.send("<:game_die:820909565281042452>" + "Here's a random number:" + " [" + math + "]");
-              consoleLog();
-            }
+
             //LOOK INTO gamedig for Minecraft server functionality.
 
 
