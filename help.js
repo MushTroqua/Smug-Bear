@@ -13,8 +13,9 @@ const info = require('./package.json')
                 { name:'s!help', value:'Displays this page.' },
                 { name:'s!ping', value:'Pong! Shows the latency of the bot.'},
                 { name:'s!avatar', value:'Shows your avatar.'},
-                { name:'s!info', value:'Shows info about Smug Bear.'},
-                { name:'s!echo', value:'Repeats your message (Monke say, Smug Bear do!)'}
+                { name:'s!echo', value:'Repeats your message (Monke say, Smug Bear do!)'},
+                { name:'s!random', value:'Pulls a random number.'},
+                { name:'s!info', value:'Shows info about Smug Bear.'}
               )
 
               const github = new Discord.MessageEmbed()
