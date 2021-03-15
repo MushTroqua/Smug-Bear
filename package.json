@@ -1,6 +1,6 @@
 {
   "name": "smug-bear",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "description": "A discord bot for a certain private discord server.",
   "main": "bot.js",
   "scripts": {

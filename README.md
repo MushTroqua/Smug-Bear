@@ -1,5 +1,5 @@
 # Smug-Bear
-Smug bear is an all around discord bot built for a private discord server.
+Smug bear (Version 0.8.1) is an all around discord bot built for a private discord server.
 
 ## Goals
 
@@ -12,6 +12,9 @@ There isn't any features that aren't really that far off from any typical bot as
 * **s!help** = Shows you the list of commands for Smug Bear!
 * **s!ping** = Pong! Will give you the latency of the bot.
 * **s!avatar** = Will get the url of your avatar and post it in the channel.
+* **s!echo** = Repeats your message (Monke say, Smug Bear do!).
+* **s!info** = Shows info about Smug Bear.
+* **s!random** = Displays a random number.
 
 ## Planned Features:
 
@@ -29,9 +32,9 @@ There isn't any features that aren't really that far off from any typical bot as
 
 As of right now, the only way you could use this bot is to host it using your own machine. You can host your own version of Smug bear by:
 
-1. Create your own bot in Discord's developer portal
+1. Creating your own bot in Discord's developer portal
 1. Cloning this repository
-1. Open Command prompt by right-clicking on the cloned-repository 
+1. Open Command prompt by right-clicking on the cloned-repository and selecting "Run in Command Prompt"
 1. Run npm i
 1. After that, do node bot.js
 1. Done!
