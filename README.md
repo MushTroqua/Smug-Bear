@@ -15,6 +15,8 @@ There isn't any features that aren't really that far off from any typical bot as
 * **s!echo** = Repeats your message (Monke say, Smug Bear do!).
 * **s!info** = Shows info about Smug Bear.
 * **s!random** = Displays a random number.
+* **s!topic** = Gives a random topic.
+* **s!spicy** = DMs you a random and spicy pick-up line <3
 
 ## Planned Features:
 
@@ -24,7 +26,7 @@ There isn't any features that aren't really that far off from any typical bot as
 
 * **Reply to set phrases** = Intended to reply to frequently said words of users in my server. Think Dad Bot.
 
-* **Moderator commands** = From commands such as s!ban and s!mute, among other things.
+* **Separate Command Module** = Allows you to activate a module to access the bot's moderator commands.
 
 *This list will probably grow bigger once I get more creative/There are things which I can add that will make things more convenient for me*
 
