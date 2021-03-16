@@ -7,16 +7,23 @@ const client = new Discord.Client();
 const { Client, MessageEmbed, Collection } = require('discord.js');
 //Plugin from Discord.js
 
+const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'ing these users. DON'T.
+
 //==============BOOT-UP==============//
-client.on('ready', async () => {
-  const info = require ('./package.json');
-  var version = info.version;
-  var name = info.author;
-    console.log(version);
-    console.log(name);
-    console.log('All initialized and ready to fuck those motherfuckers up.');
-    client.user.setActivity("with these hands");
-});
+  client.on('ready', async () => {
+    const info = require ('./package.json');
+    var version = info.version;
+    var name = info.author;
+      console.log(version);
+      console.log(name);
+      client.users.fetch(userID[1]).then((user) => {
+      user.send("Bot has activated. If you didn't activate this bot, then do `s!forcestop`. If you did, then don't mind this message.")
+      .catch(() => console.log("I didn't find matsu#3622... Is this a private instance of me? If so, please change the second userID to your own."));
+    });
+      client.user.setActivity("with these hands");
+      console.log('All initialized and ready to fuck those motherfuckers up.');
+
+  });
 
 //==============CODE==============//
 
@@ -28,15 +35,18 @@ client.on('ready', async () => {
         const commandBody = message.content.slice(prefix.length);
         const args = commandBody.split(' ');
         const command = args.shift().toLowerCase();
-        const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'ing this user. DON'T.
+        const userAuthor = message.author.toString();
         const help = require('./help.js');
+        const topicArray = require('./topic.json');
 
         function consoleLog(){
           try {
-            let consoleLog = message.author.id + "/" + message.author.username + " used a command at " + message.guild.id + "/" + message.guild.name;
+            let consoleLog = message.author.id + "/" + message.author.tag + " used " + message.content + " at " + message.guild.id + "/" + message.guild.name;
               console.log(consoleLog)
           } catch(err){
-              console.log("I can't tell where this came from. Maybe a DM?")
+            let cltype = message.channel.type;
+            let dmlog = message.author.id + "/" + message.author.tag + " used " + message.content + " at " + cltype
+              console.log(dmlog)
             }
           };
 
@@ -74,20 +84,55 @@ client.on('ready', async () => {
             }
 
             if (message.content.includes('s!echo')) {
-              message.channel.send(message.content.replace('s!echo',''));
-              message.delete(message.author);
+              try {
+                if (message.channel.type === 'dm') throw message.channel.send(`What are you doing, ${userAuthor}? You can't execute that here.`);
+                  message.channel.send(message.content.replace('s!echo',''));
+                  message.delete(message.author);
+                  consoleLog();
+              }catch(err) {
+              console.log("Error in doing " + message.content);
+            }
+          }
+
+            if (command === "random"){
+              let math = Math.floor(Math.random() * 101);
+              message.channel.send("<:game_die:820909565281042452>" + "Here's a random number:" + " [" + math + "]");
               consoleLog();
             }
-            if (command === "random"){
-              let math = Math.floor(Math.random() * 11);
-              message.channel.send("<:game_die:820909565281042452>" + "Here's a random number:" + " [" + math + "]");
 
+            if (command === "topic"){
+              let topic = topicArray.topic;
+              let emoji = topicArray.emojis;
+              const randomEmoji = emoji[Math.floor(Math.random() * 18)];
+              const randomTopic = topic[Math.floor(Math.random() * 58)];
+              const topicEmbed = new Discord.MessageEmbed()
+                .setColor('#4985e9')
+                .setTitle(randomEmoji + " Showing a topic. " + randomEmoji)
+                .setTimestamp()
+                .setFooter(message.author.nickname)
+                .setDescription(randomTopic)
+              message.channel.send(topicEmbed);
+              consoleLog();
             }
 
-            if ((command === "forcestop") & (message.author.id == userID[1])) {
+            if (command === "spicy"){
+              let pickup = topicArray.lines;
+                const randomPickUp = pickup[Math.floor(Math.random() * 17)];
+                try{
+                  message.author.send(randomPickUp);
+                  consoleLog();
+              } catch(error){
+                  console.log(message.author.tag+"'s was closed so I sent it to the channel instead");
+              } finally{
+                  if (message.channel.type === 'text') {
+                  message.channel.send("Sent you a spicy quote :black_heart:");
+                } else return
+              }
+            }
+
+            if ((command === "forcestop") & (message.author.id === userID[1])) {
               stop();
             } //Only if needed.
-
 
             //LOOK INTO gamedig for Minecraft server functionality.
 
