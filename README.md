@@ -40,7 +40,7 @@ Since, the bot is still private, then the only option is to host it on your own.
 1. Go to your recently created application and press on "Bot" in Settings.
 1. Press "Add Bot". You will receive a prompt stating that this action will be irrevocable. Press Yes. You'll be redirected to a screen where you'll see a Username, Icon, and a thing called Token with a blue markup which says "Click to Reveal Token".
 1. Click on it and copy the string of numbers and text. Keep it snug and safe.
-1. Going back to GitHub, clone this repository by pressing on Code at the top right corner, then press on "Download ZIP". Extract the folder anywhere you want.\
+1. Going back to GitHub, clone this repository by pressing on Code at the top right corner, then press on "Download ZIP". Extract the folder anywhere you want.
 1. Go to your newly extracted folder.
 1. Before we continue, you need to create a file called "config.json" inside the folder. This is where we'll store our token that we got from Discord earlier which the bot needs to run.
 1. Copy paste this specific code into your newly created file:
@@ -50,8 +50,7 @@ Since, the bot is still private, then the only option is to host it on your own.
     "userID":["USER-ID", "USER-ID"]
   }
 ```
-   * Insert your bot token inside the "BOT_TOKEN" line. Make sure to remove "YOUR BOT TOKEN HERE" first!
-   * You might have noticed the line called "userID". This is just for specific responses from commands like *s!ping* and the bot's debug commands so its not really necessary. You can  ignore this if you want. If you want to however, access those, then you can do so by looking here https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID- and copy pasting the required IDs. **Be warned however, that by accessing the debug commands, you are responsible for the safety of your machine. I will not be liable in any damage, machine or storage-wise.**
+Insert your bot token inside the "BOT_TOKEN" line. Make sure to remove "YOUR BOT TOKEN HERE" first! You might have also noticed the line called "userID". This is just for specific responses from commands like *s!ping* and the bot's debug commands so its not really necessary. You can  ignore this if you want. If you want to however, access those, then you can do so by looking here https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID- and copy pasting the required IDs. **Be warned however, that by accessing the debug commands, you are responsible for the safety of your machine. I will not be liable in any damage, machine or storage-wise.**
 1. Open up your CMD prompt. You can find it by searching it on your Start menu.
 1. Change the directory to your recently extracted folder. For example, mine would be `cd C:\\Smug-Bear`. This will be different for each user however.
 If you want to know the directory of a folder then just right click on it then press "Properties". You'll see it in the Location line.
