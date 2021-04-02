@@ -2,12 +2,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const Gamedig = require("gamedig")
 const client = new Discord.Client();
-//Thing required to connect to the Discord API.
-
-const { Client, MessageEmbed, Collection } = require('discord.js');
-//Plugin from Discord.js
-
-const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'ing these users. DON'T.
+const help = require('./help.js');
 
 //==============BOOT-UP==============//
   client.on('ready', async () => {
@@ -16,13 +11,8 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
     var name = info.author;
       console.log(version);
       console.log(name);
-      client.users.fetch(userID[1]).then((user) => {
-      user.send("Bot has activated. If you didn't activate this bot, then do `s!forcestop`. If you did, then don't mind this message.")
-      .catch(() => console.log("I didn't find matsu#3622... Is this a private instance of me? If so, please change the second userID to your own."));
-    });
       client.user.setActivity("with these hands");
       console.log('All initialized and ready to fuck those motherfuckers up.');
-
   });
 
 //==============CODE==============//
@@ -31,13 +21,12 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
         client.on("message", function(message) {
           if (message.author.bot) return;
           if (!message.content.startsWith(prefix)) return;
-
         const commandBody = message.content.slice(prefix.length);
         const args = commandBody.split(' ');
         const command = args.shift().toLowerCase();
         const userAuthor = message.author.toString();
-        const help = require('./help.js');
         const topicArray = require('./topic.json');
+        const userID = config.userID;
 
         function consoleLog(){
           try {
@@ -58,8 +47,8 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
         //This is the ping and pong command.
           if (command === "ping") {
             const timeTaken = Date.now() - message.createdTimestamp;
-              if (message.author.id === userID[0]){
-                  message.channel.send(`Hello Siopao! This message had a latency of ${timeTaken}ms.`);
+              if (message.author.id === userID[1]){
+                  message.channel.send(`Hello Master! This message had a latency of ${timeTaken}ms.`);
               } else {
                   message.channel.send(`Pong, motherfucker. This message had a latency of ${timeTaken}ms.`);
                 };
@@ -73,15 +62,48 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
               }
 
         //This is the display avatar command
-             if (command === 'avatar') {
-              const avatar = new Discord.MessageEmbed()
-                .setColor('#4985e9')
-                .setTitle('🖼Avatar')
-                .setImage(message.author.avatarURL())
+        function getUserFromMention(mention) {
+        	if (!mention) return;
 
-            message.channel.send(avatar);
-            consoleLog();
-            }
+        	if (mention.startsWith('<@') && mention.endsWith('>')) {
+        		mention = mention.slice(2, -1);
+
+        		if (mention.startsWith('!')) {
+        			mention = mention.slice(1);
+        		}
+
+        		return client.users.cache.get(mention);
+        	}
+        }
+
+        if (command === 'avatar') {
+        	if (args[0]) {
+        		const user = getUserFromMention(args[0]);
+        		if (!user) {
+              consoleLog()
+        			return message.channel.send('`Please mention them correctly, like this `@matsu3622`');
+        		}
+
+            const avatar = new Discord.MessageEmbed()
+            .setColor('#4985e9')
+            .setTitle(`${user.username}'s avatar:`)
+            .setImage(`${user.displayAvatarURL({ dynamic: true })}`)
+            .setTimestamp()
+            .setFooter(message.author.tag)
+            consoleLog()
+          		return message.channel.send(avatar);
+
+          	}
+            const UserAvatar = new Discord.MessageEmbed()
+            .setColor('#4985e9')
+            .setTitle(`Your avatar:`)
+            .setImage(`${message.author.displayAvatarURL({ dynamic: true })}`)
+            .setTimestamp()
+            .setFooter(message.author.tag)
+            consoleLog()
+          	return message.channel.send(UserAvatar);
+
+          }
 
             if (message.content.includes('s!echo')) {
               try {
@@ -109,7 +131,7 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
                 .setColor('#4985e9')
                 .setTitle(randomEmoji + " Showing a topic. " + randomEmoji)
                 .setTimestamp()
-                .setFooter(message.author.nickname)
+                .setFooter(message.author.tag)
                 .setDescription(randomTopic)
               message.channel.send(topicEmbed);
               consoleLog();
@@ -119,22 +141,33 @@ const userID = ["680436857758416900", "439066710109323264"]; //Don't bother DM'i
               let pickup = topicArray.lines;
                 const randomPickUp = pickup[Math.floor(Math.random() * 17)];
                 try{
-                  message.author.send(randomPickUp);
-                  consoleLog();
-              } catch(error){
-                  console.log(message.author.tag+"'s was closed so I sent it to the channel instead");
-              } finally{
+                  message.author.send(randomPickUp); //Tries to send the obj, which is in this case, randomPickup.
+              } catch(err){
+                  message.channel.send(randomPickup);
+                  console.log("Something happened! Either their DMs were closed or it was an error."); //If an error occurs, it logs it into the console
+              } finally{                                                                            //  and sends it to the guild-channel inside.
                   if (message.channel.type === 'text') {
-                  message.channel.send("Sent you a spicy quote :black_heart:");
-                } else return
+                  message.channel.send("Sent you a spicy quote :black_heart:");  //Finally sends this message even if both cases fail.
+                  consoleLog();
+                } else return //This is only if the command was sent inside a guild-channel.
               }
             }
 
-            if ((command === "forcestop") & (message.author.id === userID[1])) {
-              stop();
-            } //Only if needed.
-
-            //LOOK INTO gamedig for Minecraft server functionality.
+            if ((command === "convert") & (message.author.id === userID[0])) {
+              const code = message.content.slice(9);
+              try{
+              eval(code) //This will convert the string to actual code that the bot can do. This bit of code is evil AND dangerous.
+              consoleLog()
+            } catch (err){
+              message.channel.send("```javascript\n//Your code must be in Javascript.\n//Returning input.\n"+ code +"\n```")
+              console.log("Failed conversion.")
+            } finally {
+              message.delete(message.author);
+            }
+          } //THIS IS SOLELY FOR DEBUGGING PURPOSES. If you are hosting this bot on your own, then I recommend that you secure your config.json file.
+            //I am not responsible for any damages this command will do to your device. If you want to read more regarding the dangers of the eval()
+            //function then go here: https://github.com/AnIdiotsGuide/discordjs-bot-guide/blob/master/examples/making-an-eval-command.md. If you don't
+            //want this command, then you can remove it, granted you remove the whole if condition.
 
 
     });
