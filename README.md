@@ -46,6 +46,7 @@ Since, the bot is still private, then the only option is to host it on your own.
 1. Copy paste this specific code into your newly created file:
 ```json
   {
+    "prefix":"s!",
     "BOT_TOKEN":"YOUR BOT TOKEN HERE",
     "userID":["USER-ID", "USER-ID"]
   }
