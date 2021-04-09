@@ -33,7 +33,19 @@ const info = require('./package.json')
               {name:"GitHub:", value:info.homepage}
               )
 
-
+              const mathHelp = new Discord.MessageEmbed()
+              .setColor('#4985e9')
+              .setAuthor("Smug Bear","https://cdn.discordapp.com/emojis/756556429078560798.png?v=1")
+              .setThumbnail("https://imgur.com/hqMzDn9.png")
+              .setTimestamp( )
+              .setTitle("Hey there buddy!")
+              .setDescription("**You have to provide the following arguements:**")
+              .addFields(
+                {name:"Type:", value:"Arithmetic, Geometric."},
+                {name:"Number:", value:"1 2 3 4"},
+                {name:"*Example:*", value:"*s!math Geometric 1 2 3 4 5*"}
+              )
 
 exports.page = page;
 exports.github = github;
+exports.math = mathHelp;

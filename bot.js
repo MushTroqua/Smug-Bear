@@ -20,7 +20,7 @@ const help = require('./help.js');
     const prefix = config.prefix;
         client.on("message", function(message) {
           if (message.author.bot) return;
-          if (!message.content.startsWith(prefix)) return;
+          if (!message.content.toLowerCase().startsWith(prefix)) return;
         const commandBody = message.content.slice(prefix.length);
         const args = commandBody.split(' ');
         const command = args.shift().toLowerCase();
@@ -77,22 +77,19 @@ const help = require('./help.js');
         } //Gets the data of the mentioned user based on their ID from the guild's cache.
 
         if (command === 'avatar') {
+          consoleLog()
         	if (args[0]) {
         		const user = getUserFromMention(args[0]);
         		if (!user) {
-              consoleLog()
         			return message.channel.send(`Please mention them correctly, like this: ${userAuthor} (@nickname).`);
         		}
-
             const avatar = new Discord.MessageEmbed() //emmbed for avatar command if there was someone mentioned
             .setColor('#4985e9')
             .setTitle(`${user.username}'s avatar:`)
             .setImage(`${user.displayAvatarURL({ dynamic: true })}`)
             .setTimestamp()
             .setFooter(message.author.tag)
-            consoleLog()
-          		return message.channel.send(avatar);
-
+          	return message.channel.send(avatar);
           	}
             const UserAvatar = new Discord.MessageEmbed() //Embed for avatar command
             .setColor('#4985e9')
@@ -138,20 +135,14 @@ const help = require('./help.js');
             } //Topic command which gets a random topic from an array in a json file.
 
             if (command === "spicy"){
+              consoleLog();
               let pickup = topicArray.lines;
                 const randomPickUp = pickup[Math.floor(Math.random() * 17)];
-                try{
-                  message.author.send(randomPickUp); //Tries to send the obj, which is in this case, randomPickup.
-              } catch(err){
-                  message.channel.send(randomPickup);
-                  console.log("Something happened! Either their DMs were closed or it was an internal error."); //If an error occurs, it logs it into the console
-              } finally{                                                                            //  and sends it to the guild-channel inside.
                   if (message.channel.type === 'text') {
-                  message.channel.send("Sent you a spicy quote :black_heart:");  //Finally sends this message even if both cases fail.
-                  consoleLog();
-                } else return //This is only if the command was sent inside a guild-channel.
+                  message.channel.send("Sent you a spicy quote :white_heart:");
+                  message.author.send("`"+randomPickUp+"`").catch(()=> message.channel.send("`"+randomPickUp+"`"));//Tries to send randomPickup to DMs. If it's closed, it catches the error
+                } else message.channel.send("`"+ randomPickUp +"`")                                                //and sends it to the guild-channel instead.
               }
-            }
 
             if ((command === "eval") & (message.author.id === userID[0])) {
               const code = message.content.slice(command.length + prefix.length);
@@ -162,13 +153,59 @@ const help = require('./help.js');
               console.log("Failed conversion.")
             } finally {
               message.delete(message.author);
-              consoleLog()
             }
           } //If you are hosting this bot on your own, then I recommend that you secure your config.json file.
             //I am not responsible for any damages this command will do to your device. If you want to read more regarding the dangers of the eval()
             //function then go here: https://github.com/AnIdiotsGuide/discordjs-bot-guide/blob/master/examples/making-an-eval-command.md. If you don't
             //want this command, then you can remove it, granted you remove the whole if condition.
 
+          if (command === "math"){
+            consoleLog()
+          let mContent = Array.from(message.content.split(" ").slice(1));
+            if (mContent.includes("arithmetic")) {
+              let numbers = mContent.slice(1);
+              let a = numbers[0];
+              let b = numbers[1];
+              let d = b-a;
+              let n = numbers.length-1;
+              let x = Number(numbers[n]);
+              let ans = x + d
+              const arith = new Discord.MessageEmbed()
+              .setTitle("Here you go...")
+              .setAuthor("Arithmetic Series")
+              .setThumbnail("https://imgur.com/hqMzDn9.png")
+              .addFields(
+                {name:"First Term of the Sequence:", value:"["+a+"]"},
+                {name:"Common Difference:", value:"["+d+"]"},
+                {name:"The next value:", value:"["+ans+"]"}
+              )
+              .setFooter(message.author.tag)
+              .setTimestamp()
+              message.channel.send(arith)
+            }
+            else if (mContent.includes("geometric")) {
+              let numbers = mContent.slice(1);
+              let x = numbers[0];
+              let y = numbers[1];
+              let r = y/x;
+              let a = Number(numbers[numbers.length - 1]);
+              let ans = a*r;
+              const geom = new Discord.MessageEmbed()
+              .setTitle("Here you go...")
+              .setAuthor("Geometric Series")
+              .setThumbnail("https://imgur.com/hqMzDn9.png")
+              .addFields(
+                {name:"First Term of the Sequence:", value:"["+x+"]"},
+                {name:"Ratio:", value:"["+r+"]"},
+                {name:"The next value:", value:"["+ans+"]"}
+              )
+              .setFooter(message.author.tag)
+              .setTimestamp()
+                message.channel.send(geom)
+            } else{
+              message.channel.send(help.math)
+            }
+          }
 
     });
 
