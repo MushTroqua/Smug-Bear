@@ -26,6 +26,8 @@
   "homepage": "https://github.com/MushTroqua/Smug-Bear#readme",
   "dependencies": {
     "cheerio-select": "^1.1.0",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1",
     "gamedig": "^2.0.25",
     "promise-toolbox": "^0.16.0"
   }

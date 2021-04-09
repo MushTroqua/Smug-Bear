@@ -1,6 +1,15 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Dad_Bot is listening in at http://localhost:${port}`));
+
+//==============EXPRESS==============//
 const Discord = require("discord.js");
 const config = require("./config.json");
-const Gamedig = require("gamedig")
+const Gamedig = require("gamedig");
 const client = new Discord.Client();
 const help = require('./help.js');
 
@@ -172,4 +181,4 @@ const help = require('./help.js');
 
     });
 
-client.login(config.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
