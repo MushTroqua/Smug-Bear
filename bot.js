@@ -178,6 +178,54 @@ const help = require('./help.js');
             //function then go here: https://github.com/AnIdiotsGuide/discordjs-bot-guide/blob/master/examples/making-an-eval-command.md. If you don't
             //want this command, then you can remove it, granted you remove the whole if condition.
 
+          if (command === "math"){
+            consoleLog()
+          let mContent = Array.from(message.content.split(" ").slice(1));
+            if (mContent.includes("arithmetic")) {
+              let numbers = mContent.slice(1);
+              let a = numbers[0];
+              let b = numbers[1];
+              let d = b-a;
+              let n = numbers.length-1;
+              let x = Number(numbers[n]);
+              let ans = x + d
+              const arith = new Discord.MessageEmbed()
+              .setTitle("Here you go...")
+              .setAuthor("Arithmetic Series")
+              .setThumbnail("https://imgur.com/hqMzDn9.png")
+              .addFields(
+                {name:"First Term of the Sequence:", value:"["+a+"]"},
+                {name:"Common Difference:", value:"["+d+"]"},
+                {name:"The next value:", value:"["+ans+"]"}
+              )
+              .setFooter(message.author.tag)
+              .setTimestamp()
+              message.channel.send(arith)
+            }
+            else if (mContent.includes("geometric")) {
+              let numbers = mContent.slice(1);
+              let x = numbers[0];
+              let y = numbers[1];
+              let r = y/x;
+              let a = Number(numbers[numbers.length - 1]);
+              let ans = a*r;
+              const geom = new Discord.MessageEmbed()
+              .setTitle("Here you go...")
+              .setAuthor("Geometric Series")
+              .setThumbnail("https://imgur.com/hqMzDn9.png")
+              .addFields(
+                {name:"First Term of the Sequence:", value:"["+x+"]"},
+                {name:"Ratio:", value:"["+r+"]"},
+                {name:"The next value:", value:"["+ans+"]"}
+              )
+              .setFooter(message.author.tag)
+              .setTimestamp()
+                message.channel.send(geom)
+            } else{
+              message.channel.send(help.math)
+            }
+          }
+
 
     });
 
