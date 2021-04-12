@@ -1,0 +1,32 @@
+{
+  "name": "smug-bear",
+  "version": "0.8.3",
+  "description": "A discord bot for a certain private discord server.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"I am alive!\";"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MushTroqua/Smug-Bear.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "javascript",
+    "node.js",
+    "discord.js",
+    "private"
+  ],
+  "author": "Matsuo Momiji",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/MushTroqua/Smug-Bear/issues"
+  },
+  "homepage": "https://github.com/MushTroqua/Smug-Bear#readme",
+  "dependencies": {
+    "cheerio-select": "^1.1.0",
+    "gamedig": "^2.0.25",
+    "promise-toolbox": "^0.16.0"
+  }
+}
