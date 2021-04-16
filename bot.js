@@ -85,16 +85,18 @@ const help = require('./help.js');
         		}
             const avatar = new Discord.MessageEmbed() //emmbed for avatar command if there was someone mentioned
             .setColor('#4985e9')
-            .setTitle(`${user.username}'s avatar:`)
-            .setImage(`${user.displayAvatarURL({ dynamic: true })}`)
+            .setTitle(`${user.username}'s avatar 📷`)
+            .setDescription(`Download it here:📥[Avatar](${user.displayAvatarURL()})`)
+            .setImage(`${user.displayAvatarURL()}?size=2048`)
             .setTimestamp()
             .setFooter(message.author.tag)
           	return message.channel.send(avatar);
           	}
             const UserAvatar = new Discord.MessageEmbed() //Embed for avatar command
             .setColor('#4985e9')
-            .setTitle(`Your avatar:`)
-            .setImage(`${message.author.displayAvatarURL({ dynamic: true })}`)
+            .setTitle(`Your avatar 📷`)
+            .setDescription(`📥 [Download it here](${message.author.displayAvatarURL()})`)
+            .setImage(`${message.author.displayAvatarURL()}?size=2048`)
             .setTimestamp()
             .setFooter(message.author.tag)
             consoleLog()
@@ -104,7 +106,7 @@ const help = require('./help.js');
 
             if (message.content.includes('s!echo')) {
               try {
-                if (message.channel.type === 'dm') throw message.channel.send(`What are you doing, ${userAuthor}? You can't execute that here.`);
+                if(message.channel.type === 'dm') throw message.channel.send(`What are you doing, ${userAuthor}? You can't execute that here.`);
                   message.channel.send(message.content.replace('s!echo',''));
                   message.delete(message.author);
                   consoleLog();
@@ -160,6 +162,7 @@ const help = require('./help.js');
             //want this command, then you can remove it, granted you remove the whole if condition.
 
           if (command === "math"){
+            const Fraction = require('fractional').Fraction
             consoleLog()
           let mContent = Array.from(message.content.split(" ").slice(1));
             if (mContent.includes("arithmetic")) {
@@ -175,9 +178,9 @@ const help = require('./help.js');
               .setAuthor("Arithmetic Series")
               .setThumbnail("https://imgur.com/hqMzDn9.png")
               .addFields(
-                {name:"First Term of the Sequence:", value:"["+a+"]"},
-                {name:"Common Difference:", value:"["+d+"]"},
-                {name:"The next value:", value:"["+ans+"]"}
+                {name:"First Term of the Sequence:", value:`[${a}]`},
+                {name:"Common Difference:", value:`[${d}]`},
+                {name:"The next value:", value:`[${ans}]`}
               )
               .setFooter(message.author.tag)
               .setTimestamp()
@@ -196,8 +199,8 @@ const help = require('./help.js');
               .setThumbnail("https://imgur.com/hqMzDn9.png")
               .addFields(
                 {name:"First Term of the Sequence:", value:"["+x+"]"},
-                {name:"Ratio:", value:"["+r+"]"},
-                {name:"The next value:", value:"["+ans+"]"}
+                {name:"Ratio:", value:`[${r}] or [${new Fraction(y,x)}]`},
+                {name:"The next value:", value:`[${ans}] or [${new Fraction(ans)}]`}
               )
               .setFooter(message.author.tag)
               .setTimestamp()

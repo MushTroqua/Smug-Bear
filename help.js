@@ -39,12 +39,12 @@ const config = require('./config.json')
               .setColor(`#4985e9`)
               .setAuthor("Smug Bear","https://cdn.discordapp.com/emojis/756556429078560798.png?v=1")
               .setThumbnail("https://imgur.com/hqMzDn9.png")
-              .setTimestamp( )
+              .setTimestamp()
               .setTitle("Hey there buddy!")
               .setDescription("**You have to provide the following arguements:**")
               .addFields(
                 {name:"Type:", value:"Arithmetic, Geometric."},
-                {name:"Number:", value:"1 2 3 4"},
+                {name:"Number:", value:"No fractions(1 2 3 4)"},
                 {name:"*Example:*", value:`*${config.prefix}math Geometric 1 2 3 4 5*`}
               )
 
