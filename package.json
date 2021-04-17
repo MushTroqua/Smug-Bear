@@ -1,6 +1,6 @@
 {
   "name": "smug-bear",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "A discord bot for a certain private discord server.",
   "main": "bot.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "cheerio-select": "^1.1.0",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
+    "fractional": "^1.0.0",
     "gamedig": "^2.0.25",
     "promise-toolbox": "^0.16.0"
   }

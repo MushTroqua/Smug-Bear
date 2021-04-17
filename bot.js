@@ -7,7 +7,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log(`Smug Bear is listening in at http://localhost:${port}`));
 
 //==============EXPRESS==============//
-onst Discord = require("discord.js");
+const Discord = require("discord.js");
 const config = require("./config.json");
 const Gamedig = require("gamedig")
 const client = new Discord.Client();
@@ -37,6 +37,9 @@ client.on("message", function(message) {
 	const topicArray = require('./topic.json');
 	const userID = config.userID;
 
+	if (message.content.toLowerCase() === prefix)
+	return message.channel.send(`*Psst!* Try \`\`\`${prefix}help\`\`\`!`);
+	
 	function consoleLog() {
 		try {
 			let consoleLog = message.author.id + "/" + message.author.tag + " used " + message.content + " at " + message.guild.id + "/" + message.guild.name;
@@ -53,7 +56,7 @@ client.on("message", function(message) {
 		consoleLog();
 	} //Info command.
 
-
+	
 	if (command === "ping") {
 		const timeTaken = Date.now() - message.createdTimestamp;
 		if (message.author.id === userID[1]) {
@@ -95,7 +98,7 @@ client.on("message", function(message) {
 			const avatar = new Discord.MessageEmbed() //emmbed for avatar command if there was someone mentioned
 				.setColor('#4985e9')
 				.setTitle(`${user.username}'s avatar 📷`)
-				.setDescription(`Download it here:📥[Avatar](${user.displayAvatarURL()})`)
+				.setDescription(`Download it here: 📥 [Avatar](${user.displayAvatarURL()})`)
 				.setImage(`${user.displayAvatarURL()}?size=2048`)
 				.setTimestamp()
 				.setFooter(message.author.tag)
@@ -104,7 +107,7 @@ client.on("message", function(message) {
 		const UserAvatar = new Discord.MessageEmbed() //Embed for avatar command
 			.setColor('#4985e9')
 			.setTitle(`Your avatar 📷`)
-			.setDescription(`📥 [Download it here](${message.author.displayAvatarURL()})`)
+			.setDescription(` Download it here: 📥 [Avatar](${message.author.displayAvatarURL()})`)
 			.setImage(`${message.author.displayAvatarURL()}?size=2048`)
 			.setTimestamp()
 			.setFooter(message.author.tag)
