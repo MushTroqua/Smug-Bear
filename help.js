@@ -12,14 +12,17 @@ const config = require('./config.json')
               .setTimestamp()
               .addFields(
                 { name:`${config.prefix}help`, value:`Displays this page.`, inline:true },
-                { name:`${config.prefix}ping`, value:`Pong! Gives you the latency of the bot.`, inline:true},
+                { name:`${config.prefix}prefix`, value:"Change the bot's prefix. Default prefix is `s!`", inline:true},
+                { name:`${config.prefix}ping`, value:`Pong!`, inline:true},
                 { name:`${config.prefix}avatar`, value:`Shows your avatar in a neat embed.`, inline:true},
                 { name:`${config.prefix}echo`, value:`Repeats your message (Monke say, Smug Bear do!)`, inline:true},
                 { name:`${config.prefix}random`, value:`Pulls a random number from 0-100.`, inline:true},
                 { name:`${config.prefix}topic`, value:"Can\`t think of a topic? Let Smug Bear do it for you!", inline:true},
                 { name:`${config.prefix}spicy`, value:"The bot will DM you a spicy pick-up line ;-)", inline:true},
                 { name:`${config.prefix}info`, value:"Shows info about Smug Bear like version number, etc.", inline:true},
-								{ name:`${config.prefix}math`, value:"Calculate, and be big brain. Do `s!math` for more info.", inline:true}
+								{ name:`${config.prefix}math`, value:"Calculate, and be big brain. Do `s!math` for more info.", inline:true},
+                { name:`${config.prefix}spam`, value:"Spam, spam, spam! Spams a message *(Requires the \"Manage Message\" Permission)*", inline:true},
+                { name:`${config.prefix}minecraft`, value:"Shows an Embed about the minecraft server.", inline:true}
               )
 
               const github = new Discord.MessageEmbed()
